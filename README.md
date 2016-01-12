@@ -3,11 +3,9 @@ A Windows Run-like dialog for PowerShell.
 
 ![PSRunner Screenshot](https://raw.githubusercontent.com/qJake/PSRunner/master/Assets/PSRunner-Screenshot1.png)
 
-Current version: **2.1.0**
-
 # Releases
 
-Current release: N/A
+Current release: [Version 2.1.0](https://github.com/qJake/PSRunner/releases/tag/2.1.0)
 
 # Contributing
 
