@@ -13,6 +13,8 @@ Current release: N/A
 
 Report bugs, request enhancements, fork it, and send me pull requests via this repo.
 
+Not sure where to start? [Search the code for "TODO:"](https://github.com/qJake/PSRunner/search?q=TODO%3A) and do it! :smile:
+
 # License
 
 Licensed under the [MIT License](https://opensource.org/licenses/MIT).
