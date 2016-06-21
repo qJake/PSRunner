@@ -80,6 +80,12 @@ namespace PSRunner
                     SaveAutocomplete();
                     RunCommand(CommandBox.Text, elevate);
                 }
+                else
+                {
+                    // If the box is empty, just open a PowerShell window.
+                    var elevate = (ModifierKeys & Keys.Control) > 0 && (ModifierKeys & Keys.Shift) > 0;
+                    RunCommand("-noexit", elevate);
+                }
 
                 // After executing (which is somewhat asynchronous), close the dialog.
                 DialogResult = DialogResult.OK;
