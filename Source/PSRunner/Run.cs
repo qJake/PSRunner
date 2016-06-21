@@ -74,22 +74,7 @@ namespace PSRunner
             // Execute the command on Enter, and check if we need to run as admin.
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Return)
             {
-                if (!string.IsNullOrWhiteSpace(CommandBox.Text))
-                {
-                    var elevate = (ModifierKeys & Keys.Control) > 0 && (ModifierKeys & Keys.Shift) > 0;
-                    SaveAutocomplete();
-                    RunCommand(CommandBox.Text, elevate);
-                }
-                else
-                {
-                    // If the box is empty, just open a PowerShell window.
-                    var elevate = (ModifierKeys & Keys.Control) > 0 && (ModifierKeys & Keys.Shift) > 0;
-                    RunCommand("-noexit", elevate);
-                }
-
-                // After executing (which is somewhat asynchronous), close the dialog.
-                DialogResult = DialogResult.OK;
-                Close();
+                RunCommand();
             }
         }
 
@@ -98,11 +83,27 @@ namespace PSRunner
         /// </summary>
         private void OKButton_Click(object sender, EventArgs e)
         {
+            RunCommand();
+        }
+
+        private void RunCommand()
+        {
             if (!string.IsNullOrWhiteSpace(CommandBox.Text))
             {
+                var elevate = (ModifierKeys & Keys.Control) > 0 && (ModifierKeys & Keys.Shift) > 0;
                 SaveAutocomplete();
-                RunCommand(CommandBox.Text, false);
+                StartPowerShell(CommandBox.Text, elevate);
             }
+            else
+            {
+                // If the box is empty, just open a PowerShell window.
+                var elevate = (ModifierKeys & Keys.Control) > 0 && (ModifierKeys & Keys.Shift) > 0;
+                StartPowerShell("-noexit", elevate);
+            }
+
+            // After executing (which is somewhat asynchronous), close the dialog.
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         /// <summary>
@@ -123,7 +124,7 @@ namespace PSRunner
         /// </summary>
         /// <param name="command">The command text to run.</param>
         /// <param name="elevate">Whether or not to run the command in an elevated context.</param>
-        private void RunCommand(string command, bool elevate)
+        private void StartPowerShell(string command, bool elevate)
         {
             var p = new Process
             {
