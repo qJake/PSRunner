@@ -9,6 +9,10 @@ Current release: [Version 2.2.0](https://github.com/qJake/PSRunner/releases/tag/
 
 [View all releases](https://github.com/qJake/PSRunner/releases)
 
+### Compatibility
+
+As of 2021-08-16, confirmed working on Windows builds as recent as 21H1 (19043.1165).
+
 ### Changelog
 
 * Changed global hotkey to Win + N, due to a recent Insider build of Windows 10 stealing the Win + F shortcut.
